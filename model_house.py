@@ -1,12 +1,9 @@
 import pandas as pd
 import tensorflow as tf
-from tensorflow.keras.layers import Dense, Input
+from tensorflow.keras.layers import Dense
 from tensorflow.keras import Sequential
-from matplotlib import pyplot as plt
-from tensorflow.data import Dataset
-import numpy as np
-import os
 from tensorflow.keras.optimizers import Adam
+from matplotlib import pyplot as plt
 import seaborn as sns
 
 
@@ -25,10 +22,10 @@ train = pd.read_csv('train.csv')
 
 
 for column in test.select_dtypes(include=['object']):
-        train[column]=pd.Categorical(train[column])
-        train[column]=train[column].cat.codes
-        test[column]=pd.Categorical(test[column])
-        test[column]=test[column].cat.codes
+    train[column]=pd.Categorical(train[column])
+    train[column]=train[column].cat.codes
+    test[column]=pd.Categorical(test[column])
+    test[column]=test[column].cat.codes
 
 mask = abs(train.corr()['SalePrice'])> CORR_VALUE
 col_mask = train.columns[mask]
