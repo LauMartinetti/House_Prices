@@ -1,20 +1,16 @@
+import os
 import pandas as pd
-import tensorflow as tf
 from tensorflow.keras.layers import Dense
 from tensorflow.keras import Sequential
 from tensorflow.keras.optimizers import Adam
 from matplotlib import pyplot as plt
-import seaborn as sns
 
 
 #important values
-VAL_SPLIT = 0.2
-EPOCHS = 1000
-LEARN_RATE=.0001
+VAL_SPLIT = 0.3
+EPOCHS = 50
+LEARN_RATE=.001
 CORR_VALUE=.3
-
-
-
 
 
 test = pd.read_csv('test.csv')
@@ -41,14 +37,6 @@ test_id=test['Id']
 test_inputs=test[inputs.columns]
 
 
-#Correlation figures
-sns.set(font_scale=0.75)
-sns.heatmap(train.corr(), vmax=.8, square=True, xticklabels=True, yticklabels=True,linewidth=0.05,linecolor='black')
-
-plt.figure()
-sns.heatmap(inputs.corr(), vmax=.8, square=True, xticklabels=True, yticklabels=True,linewidth=0.05,linecolor='black')
-
-
 
 ### Model ###
 
@@ -69,11 +57,12 @@ history=model.fit(inputs, targets, validation_split=VAL_SPLIT, epochs=EPOCHS)
 
 plt.figure()
 plt.grid()
-plt.plot(history.history['val_loss'], label = 'val_loss')
 plt.plot(history.history['loss'], label = 'loss')
+plt.plot(history.history['val_loss'], label = 'val_loss')
 plt.yscale('log')
-
-plt.legend()
+plt.xlabel('Epochs')
+plt.legend(fontsize=13)
+plt.savefig('losses.png', dpi=10000)
 
 
 print('_____________________________________')
@@ -85,6 +74,9 @@ print('Test accuracy', test_acc)
 print('_____________________________________')
 print('_____________________________________')
 
+
+path = os.getcwd()
+model.save(path)
 ### Test ##
 
 predict= model.predict(test_inputs)
