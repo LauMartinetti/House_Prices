@@ -75,4 +75,5 @@ for LEARN_RATE, CORR_VALUE, NODES in models_values:
     name = 'model{}.png'.format(i)
     plt.savefig(name, dpi=1000)
     i=i+1
-#plt.show()
+
+plt.show()
