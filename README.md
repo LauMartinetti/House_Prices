@@ -1,8 +1,8 @@
-#Model for prediction of houses prices
+# Model for prediction of houses prices
 [TOC]
 
-##Folders
-###House_Prices
+## Folders
+### House_Prices
 In this folder you will find:
 - the folder "**analysis**"
 - the folder "**variables**"
@@ -11,7 +11,7 @@ In this folder you will find:
 - **saved_model.pb**: the trained model
 - **test.csv**: all the data used to test the model
 - **train.csv** all the data used to train the model
-####analysis
+#### analysis
 In this folder you will find all codes used to evaluate and analyze the model and the related images.
 -  **model_analysis**: analysis of the model changing the values
 - **analysis.py**: code that generate the heatmap to visualize the correlation between the properties of the houses
@@ -19,7 +19,7 @@ In this folder you will find all codes used to evaluate and analyze the model an
 - **correlation_revised.png**: heatmap of the correlation between the properties with correlation >0.3 
 - all the **model[].png** : representation of the loss of the training set and validation set for models with different values.
 
-####variables
+#### variables
 
 ## Libraries
 The following additional libraries are used:
